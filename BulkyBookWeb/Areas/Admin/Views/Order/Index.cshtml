@@ -1,0 +1,54 @@
+﻿@model BulkyBook.Models.ViewModels.ProductVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container p-4">
+    <div class="row pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">List of Orders</h2>
+        </div>
+        <div class="col-6">
+           <a asp-controller="Order" asp-action="Index" asp-route-stats="pending">
+                <strong>Pending</strong>
+            </a>
+            <a asp-controller="Order" asp-action="Index" asp-route-stats="approved">
+                <strong>Approved</strong>
+            </a>
+        </div>
+      
+    </div>
+</div>
+
+
+<table id="myTable" class="table table-boardered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                Order Status
+            </th>
+            <th>
+                Order Total
+            </th>
+
+            <th>
+                Action
+            </th>
+
+        </tr>
+    </thead>
+
+
+
+</table>
+
+@section scripts{
+    <script src="~/js/Order.js"></script>
+}

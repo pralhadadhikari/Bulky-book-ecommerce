@@ -1,0 +1,129 @@
+﻿@model BulkyBook.Models.ViewModels.CartVM
+
+<form method="post">
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card mb-4">
+            <div class="card-header py-3">
+                <h5 class="mb-0">Shipping Details</h5>
+            </div>
+         
+            <div class="card-body">
+                <form>
+                    <div class="row mb-4">
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="text" asp-for="@Model.OrderHeader.Name" class="form-control" />
+                                <label class="form-label" for="form7Example1">Name</label>
+                            </div>
+                        </div>
+                        @*<div class="col">
+                            <div class="form-outline">
+                                <input type="text" id="form7Example2" class="form-control" />
+                                <label class="form-label" for="form7Example2">FName</label>
+                            </div>
+                        </div>*@
+                    </div>
+
+
+                    @*<div class="form-outline mb-4">
+                        <input type="text" id="form7Example3" class="form-control" />
+                        <label class="form-label" for="form7Example3">CompName</label>
+                    </div>*@
+                    @*<div class="form-outline mb-4">
+                        <input type="text" id="form7Example4" class="form-control" />
+                        <label class="form-label" for="form7Example4">Address</label>
+                    </div>*@
+                    <div class="form-outline mb-4">
+                        <input type="text" asp-for="@Model.OrderHeader.Phone" class="form-control" />
+                        <label class="form-label" for="form7Example6">Phone</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <textarea class="form-control" asp-for="@Model.OrderHeader.Address" rows="4"></textarea>
+                        <label class="form-label" for="form7Example7">Address</label>
+                    </div>
+                   
+                    <div class="row mb-4">
+
+                    <div class="col">
+                        <div class="form-outline mb-4">
+                                <input type="text" asp-for="@Model.OrderHeader.City" class="form-control" />
+                            <label class="form-label" for="form7Example4">City</label>
+                        </div>
+                    </div>
+                    <div class="col">
+
+                         <div class="form-outline mb-4">
+                            <input type="text" asp-for="@Model.OrderHeader.State" class="form-control" />
+                            <label class="form-label" for="form7Example4">state</label>
+                        </div>
+  
+                    
+                    </div>
+                   
+                    </div>
+
+                    @* <div class="form-outline mb-4">
+                        <input type="text" id="form7Example5" class="form-control" />
+                        <label class="form-label" for="form7Example5">Email</label>
+                    </div>*@
+                    
+                    
+                    <@*div class="form-check d-flex justify-content-center mb-2">
+                        <input class="form-ckeck-input me-2" type="checkbox" value="" id"form7Example8" checked />
+                        <label class="form-check-lable" for="form7Example8">Create an account?</label>
+                    </div>*@
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card mb-4">
+            <div class="card-header py-3">
+                <h5 class="mb-0">Summary</h5>
+            </div>
+            
+           
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center border">
+                        Shipping
+                        <span>Gratis</span>
+
+                    @foreach (var details in @Model.ListOfCart)
+                    {
+                    <li class="list-group-item d-flex justify-content-between align-items-center border">
+                        <span>@details.Product.Name</span>
+                            <span>QTY:@details.Count</span>
+                            <span>Rs: @(Int32.Parse(details.Product.Price) * (details.Count))</span>
+                    </li>
+
+                    }
+
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center border">
+                        <div>
+                            <strong>Total amount</strong>
+
+                            <strong class="mb-0">(including VAT)
+                            </strong>
+                        </div>
+                        <span><strong>Rs: @Model.OrderHeader.OrderTotal</strong></span>
+                    </li>
+
+                </ul>
+
+                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                    Make purchase
+                </button>
+
+            </div>
+         
+        </div>
+    </div>
+
+</div>
+</form>
